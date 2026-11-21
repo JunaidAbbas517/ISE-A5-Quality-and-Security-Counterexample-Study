@@ -1,0 +1,4 @@
+# Rollback check: frozen schema + improvement 001 + rollback/001_down.sql
+steps: ['shim', 'schema', 'improvement:001_require_active_instructor_for_course_writes.sql', 'rollback', 'fixtures']
+counterexamples: ['IN-04', 'IN-05', 'IN-10'] control_failures: [] valid: True
+expected: same counterexamples as baseline (IN-04, IN-05, IN-10) -> True

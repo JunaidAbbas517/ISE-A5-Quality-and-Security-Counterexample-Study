@@ -1,0 +1,92 @@
+# A5 before run 2
+
+utc: 2026-11-21T12:33:45Z
+python: 3.12.4
+psycopg: 3.3.9
+postgres: 16.2
+os: Windows-11-10.0.22631-SP0
+git: {'commit': '0123956837b4964bac355c8878ae02e94f9b1575', 'dirty': True}
+case_set: a5-cases-v1
+case_count: 67
+fixture_set: a5-fixtures-v1
+input sha256:
+  schema.sql: c068b7d803c8cd509961bc2c64550380205c4127d8d7f2f12c838c06cf2125d3
+  supabase_shim.sql: 708c007440f37cada5363290f1bcd502c3ba342d1081469ec021148753e0fe32
+  fixtures.sql: 47b741a6c533ef8f7a2bd4f9f91bbd1ed4f93264b50e4e842003d4346dd23855
+  cases.py: 2012aa655fd573161334c7206bf005fae5dd84108211bea536eafbb197958f6d
+  mutants.py: 5c9254cf4e74ac6a0bce27abcde09af22bec1f99974719be9061a59f9043950c
+  run_study.py: d053cbf25dfb7f55f6cc35413495d88461c4c9a10b1906680202e2d12cccd416
+
+id      claim kind     actor expect verdict rows  error / note
+PR-01   C1    abuse    S1    error  PASS          [42501] permission denied for table profiles
+PR-02   C1    abuse    S1    error  PASS          [42501] permission denied for table profiles
+PR-03   C1    abuse    P     error  PASS          [42501] permission denied for table profiles
+PR-04   C1    abuse    S1    none   PASS       0  
+PR-05   C1    abuse    S1    error  PASS          [42501] permission denied for table profiles
+PR-06   C1    control  S1    ok     PASS       1  
+SU-01   C5    abuse    auth  ok     PASS       1  
+SU-02   C5    control  auth  ok     PASS       1  
+DL-01   C2    abuse    T1    error  PASS          [42501] permission denied for table assignments
+DL-02   C2    control  T1    ok     PASS       1  
+DL-03   C2    abuse    S1    error  PASS          [P0001] Only the course instructor can change a deadline
+DL-04   C2    abuse    T2    error  PASS          [P0001] Only the course instructor can change a deadline
+DL-05   C2    abuse    R     error  PASS          [P0001] Only the course instructor can change a deadline
+DL-06   C2    boundary T1    error  PASS          [P0001] The deadline was changed by someone else. Reload and try again.
+DL-07   C2    boundary T1    error  PASS          [P0001] The new deadline must be in the future
+DL-08   C2    abuse    T1    error  PASS          [42501] permission denied for table deadline_changes
+DL-09   C2    fault    T1    error  PASS          [P0001] A5 injected fault: notification insert failed
+DL-10   C2    abuse    T1    none   PASS       0  
+IS-01   C3    abuse    S2    none   PASS       0  
+IS-02   C3    abuse    S2    none   PASS       0  
+IS-03   C3    abuse    S2    none   PASS       0  
+IS-04   C3    abuse    S1    none   PASS       0  
+IS-05   C3    control  S1    ok     PASS       2  
+IS-06   C3    abuse    S1    error  PASS          [42501] permission denied for table enrollments
+IS-07   C3    abuse    S1    none   PASS       0  
+IS-08   C3    abuse    S1    error  PASS          [42501] new row violates row-level security policy for table "objects"
+IS-09   C3    abuse    S2    none   PASS       0  
+IS-10   C3    boundary S1    error  PASS          [P0001] That enrollment code was not found. Check it with your instructor.
+IS-11   C3    abuse    S1    none   PASS       0  
+IS-12   C3    control  S1    ok     PASS       1  
+IS-13   C3    abuse    T1    none   PASS       0  
+GR-01   C7    abuse    S1    none   PASS       0  
+GR-02   C7    control  S1    ok     PASS       1  
+GR-03   C7    abuse    S1    error  PASS          [42501] permission denied for table submissions
+GR-04   C7    abuse    S1    error  PASS          [42501] permission denied for table grades
+GR-05   C7    abuse    S1    error  PASS          [P0001] Only the course instructor can grade this assignment
+GR-06   C7    abuse    S1    error  PASS          [42501] new row violates row-level security policy for table "assignment_progress"
+GR-07   C7    boundary T1    error  PASS          [P0001] Marks must be between 0 and 100
+GR-08   C7    boundary S1    error  PASS          [P0001] er.pdf was not uploaded. Try again.
+GR-09   C7    boundary S1    error  PASS          [P0001] This assignment has already been graded
+GR-10   C7    control  S1    ok     PASS       1  
+GR-11   C7    control  T1    ok     PASS       1  
+IN-01   C4    abuse    P     error  PASS          [42501] new row violates row-level security policy for table "courses"
+IN-02   C4    abuse    R     error  PASS          [42501] new row violates row-level security policy for table "courses"
+IN-03   C4    abuse    R     error  PASS          [42501] new row violates row-level security policy for table "assignments"
+IN-04   C4    abuse    R     none   FAIL       1   STATE CHECK FAILED  <-- COUNTEREXAMPLE
+IN-05   C4    abuse    R     none   FAIL       1   STATE CHECK FAILED  <-- COUNTEREXAMPLE
+IN-06   C4    abuse    R     none   PASS       0  
+IN-07   C4    abuse    R     none   PASS       0  
+IN-08   C4    abuse    R     error  PASS          [P0001] Only the course instructor can grade this assignment
+IN-09   C4    abuse    R     none   PASS       0  
+IN-10   C4    abuse    R     none   FAIL       1   STATE CHECK FAILED  <-- COUNTEREXAMPLE
+IN-11   C4    abuse    P     error  PASS          [P0001] Only an admin can verify instructors
+IN-12   C4    abuse    T1    error  PASS          [P0001] Only an admin can verify instructors
+IN-13   C4    abuse    T1    error  PASS          [P0001] Only an admin can see platform statistics
+IN-14   C4    control  A     ok     PASS       1  
+IN-15   C4    control  R     ok     PASS       1  
+IN-16   C4    control  T1    ok     PASS       1  
+IN-17   C4    abuse    T1    none   PASS       0  
+IN-18   C4    abuse    R     error  PASS          [42501] new row violates row-level security policy for table "objects"
+AN-01   C6    abuse    anon  none   PASS          [42501] permission denied for table profiles
+AN-02   C6    abuse    anon  none   PASS          [42501] permission denied for table courses
+AN-03   C6    abuse    anon  none   PASS          [42501] permission denied for table grades
+AN-04   C6    abuse    anon  error  PASS          [42501] permission denied for function enroll_by_code
+AN-05   C6    abuse    anon  none   PASS       0  
+AN-06   C6    abuse    anon  error  PASS          [42501] permission denied for function admin_stats
+AN-07   C6    abuse    anon  error  PASS          [42501] permission denied for table courses
+
+cases=67 attacks=56 controls=11
+counterexamples=['IN-04', 'IN-05', 'IN-10']
+control_failures=[]
+run_valid=True

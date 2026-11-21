@@ -1,0 +1,24 @@
+# A5 mutation run (oracle check)
+
+utc: 2026-11-21T12:34:25Z
+python: 3.12.4
+psycopg: 3.3.9
+postgres: 16.2
+os: Windows-11-10.0.22631-SP0
+git: {'commit': '0123956837b4964bac355c8878ae02e94f9b1575', 'dirty': True}
+case_set: a5-cases-v1
+case_count: 67
+fixture_set: a5-fixtures-v1
+
+M01 KILLED    change_deadline(): instructor-of-course check removed  killed_by=DL-03,DL-04,DL-05
+M02 KILLED    profiles: column privilege widened from full_name to all columns  killed_by=PR-01,PR-02,PR-03
+M03 KILLED    handle_new_user(): requested role copied from sign-up metadata  killed_by=SU-01
+M04 KILLED    grades_select: returned_at condition removed  killed_by=GR-01
+M05 KILLED    courses_select: open to every signed-in user  killed_by=IS-01
+M06 KILLED    is_instructor_of(): approval status ('active') check removed  killed_by=DL-05,IN-03,IN-06,IN-07,IN-08,IN-09,IN-18
+M07 KILLED    change_deadline(): stale expected_previous check removed  killed_by=DL-06
+M08 SURVIVED  submit_assignment(): file path ownership check weakened  killed_by=-
+M09 SURVIVED  anon: table privileges no longer revoked (RLS still on)  killed_by=-
+M10 KILLED    set_instructor_status(): admin check removed  killed_by=IN-11,IN-12
+
+mutation score = 8/10 = 0.8

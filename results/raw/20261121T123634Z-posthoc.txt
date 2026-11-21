@@ -1,0 +1,8 @@
+# A5 POST-HOC cases (not counted in the before/after comparison)
+
+before      PH-01 PASS  [P0001] The link must start with http:// or https://
+before      PH-02 PASS  [P0001] Invalid file reference
+after       PH-01 PASS  [P0001] The link must start with http:// or https://
+after       PH-02 PASS  [P0001] Invalid file reference
+mutant-M08  PH-01 PASS  [P0001] The link must start with http:// or https://
+mutant-M08  PH-02 FAIL  

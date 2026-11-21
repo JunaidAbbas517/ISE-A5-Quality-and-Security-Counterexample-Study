@@ -1,0 +1,98 @@
+{
+  "note": "post-hoc, not counted",
+  "runs": {
+    "before": [
+      {
+        "id": "PH-01",
+        "claim": "C7",
+        "kind": "boundary",
+        "actor": "S1",
+        "expect": "error",
+        "error": {
+          "sqlstate": "P0001",
+          "message": "The link must start with http:// or https://"
+        },
+        "rowcount": null,
+        "state_check": true,
+        "verdict": "PASS",
+        "counterexample": false
+      },
+      {
+        "id": "PH-02",
+        "claim": "C7",
+        "kind": "abuse",
+        "actor": "S1",
+        "expect": "error",
+        "error": {
+          "sqlstate": "P0001",
+          "message": "Invalid file reference"
+        },
+        "rowcount": null,
+        "state_check": true,
+        "verdict": "PASS",
+        "counterexample": false
+      }
+    ],
+    "after": [
+      {
+        "id": "PH-01",
+        "claim": "C7",
+        "kind": "boundary",
+        "actor": "S1",
+        "expect": "error",
+        "error": {
+          "sqlstate": "P0001",
+          "message": "The link must start with http:// or https://"
+        },
+        "rowcount": null,
+        "state_check": true,
+        "verdict": "PASS",
+        "counterexample": false
+      },
+      {
+        "id": "PH-02",
+        "claim": "C7",
+        "kind": "abuse",
+        "actor": "S1",
+        "expect": "error",
+        "error": {
+          "sqlstate": "P0001",
+          "message": "Invalid file reference"
+        },
+        "rowcount": null,
+        "state_check": true,
+        "verdict": "PASS",
+        "counterexample": false
+      }
+    ],
+    "mutant-M08": [
+      {
+        "id": "PH-01",
+        "claim": "C7",
+        "kind": "boundary",
+        "actor": "S1",
+        "expect": "error",
+        "error": {
+          "sqlstate": "P0001",
+          "message": "The link must start with http:// or https://"
+        },
+        "rowcount": null,
+        "state_check": true,
+        "verdict": "PASS",
+        "counterexample": false
+      },
+      {
+        "id": "PH-02",
+        "claim": "C7",
+        "kind": "abuse",
+        "actor": "S1",
+        "expect": "error",
+        "error": null,
+        "rowcount": 1,
+        "state_check": false,
+        "verdict": "FAIL",
+        "counterexample": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "environment": {
+    "utc": "2026-11-21T12:34:25Z",
+    "python": "3.12.4",
+    "psycopg": "3.3.9",
+    "postgres": "16.2",
+    "os": "Windows-11-10.0.22631-SP0",
+    "git": {
+      "commit": "0123956837b4964bac355c8878ae02e94f9b1575",
+      "dirty": true
+    },
+    "case_set": "a5-cases-v1",
+    "case_count": 67,
+    "fixture_set": "a5-fixtures-v1",
+    "input_sha256": {
+      "schema.sql": "c068b7d803c8cd509961bc2c64550380205c4127d8d7f2f12c838c06cf2125d3",
+      "supabase_shim.sql": "708c007440f37cada5363290f1bcd502c3ba342d1081469ec021148753e0fe32",
+      "fixtures.sql": "47b741a6c533ef8f7a2bd4f9f91bbd1ed4f93264b50e4e842003d4346dd23855",
+      "cases.py": "2012aa655fd573161334c7206bf005fae5dd84108211bea536eafbb197958f6d",
+      "mutants.py": "5c9254cf4e74ac6a0bce27abcde09af22bec1f99974719be9061a59f9043950c",
+      "run_study.py": "d053cbf25dfb7f55f6cc35413495d88461c4c9a10b1906680202e2d12cccd416"
+    }
+  },
+  "baseline_passing": [
+    "AN-01",
+    "AN-02",
+    "AN-03",
+    "AN-04",
+    "AN-05",
+    "AN-06",
+    "AN-07",
+    "DL-01",
+    "DL-02",
+    "DL-03",
+    "DL-04",
+    "DL-05",
+    "DL-06",
+    "DL-07",
+    "DL-08",
+    "DL-09",
+    "DL-10",
+    "GR-01",
+    "GR-02",
+    "GR-03",
+    "GR-04",
+    "GR-05",
+    "GR-06",
+    "GR-07",
+    "GR-08",
+    "GR-09",
+    "GR-10",
+    "GR-11",
+    "IN-01",
+    "IN-02",
+    "IN-03",
+    "IN-06",
+    "IN-07",
+    "IN-08",
+    "IN-09",
+    "IN-11",
+    "IN-12",
+    "IN-13",
+    "IN-14",
+    "IN-15",
+    "IN-16",
+    "IN-17",
+    "IN-18",
+    "IS-01",
+    "IS-02",
+    "IS-03",
+    "IS-04",
+    "IS-05",
+    "IS-06",
+    "IS-07",
+    "IS-08",
+    "IS-09",
+    "IS-10",
+    "IS-11",
+    "IS-12",
+    "IS-13",
+    "PR-01",
+    "PR-02",
+    "PR-03",
+    "PR-04",
+    "PR-05",
+    "PR-06",
+    "SU-01",
+    "SU-02"
+  ],
+  "mutants": [
+    {
+      "id": "M01",
+      "guard": "change_deadline(): instructor-of-course check removed",
+      "find": "if not public.is_instructor_of(v_course) then",
+      "replace": "if false then",
+      "status": "KILLED",
+      "killed_by": [
+        "DL-03",
+        "DL-04",
+        "DL-05"
+      ]
+    },
+    {
+      "id": "M02",
+      "guard": "profiles: column privilege widened from full_name to all columns",
+      "find": "grant update (full_name) on public.profiles to authenticated;",
+      "replace": "grant update on public.profiles to authenticated;",
+      "status": "KILLED",
+      "killed_by": [
+        "PR-01",
+        "PR-02",
+        "PR-03"
+      ]
+    },
+    {
+      "id": "M03",
+      "guard": "handle_new_user(): requested role copied from sign-up metadata",
+      "find": "case when v_instructor then 'instructor' else 'student' end,",
+      "replace": "coalesce(new.raw_user_meta_data ->> 'requested_role', 'student'),",
+      "status": "KILLED",
+      "killed_by": [
+        "SU-01"
+      ]
+    },
+    {
+      "id": "M04",
+      "guard": "grades_select: returned_at condition removed",
+      "find": "(student_id = (select auth.uid()) and returned_at is not null)",
+      "replace": "(student_id = (select auth.uid()))",
+      "status": "KILLED",
+      "killed_by": [
+        "GR-01"
+      ]
+    },
+    {
+      "id": "M05",
+      "guard": "courses_select: open to every signed-in user",
+      "find": "  instructor_id = (select auth.uid()) or public.is_enrolled_in(id)\n);",
+      "replace": "  true\n);",
+      "status": "KILLED",
+      "killed_by": [
+        "IS-01"
+      ]
+    },
+    {
+      "id": "M06",
+      "guard": "is_instructor_of(): approval status ('active') check removed",
+      "find": "      and p.role = 'instructor' and p.status = 'active'\n  );",
+      "replace": "      and p.role = 'instructor'\n  );",
+      "status": "KILLED",
+      "killed_by": [
+        "DL-05",
+        "IN-03",
+        "IN-06",
+        "IN-07",
+        "IN-08",
+        "IN-09",
+        "IN-18"
+      ]
+    },
+    {
+      "id": "M07",
+      "guard": "change_deadline(): stale expected_previous check removed",
+      "find": "if v_current <> p_expected_previous then",
+      "replace": "if false then",
+      "status": "KILLED",
+      "killed_by": [
+        "DL-06"
+      ]
+    },
+    {
+      "id": "M08",
+      "guard": "submit_assignment(): file path ownership check weakened",
+      "find": "if v_path is null or v_path not like v_a.id::text || '/' || v_me::text || '/%' then",
+      "replace": "if v_path is null then",
+      "status": "SURVIVED",
+      "killed_by": []
+    },
+    {
+      "id": "M09",
+      "guard": "anon: table privileges no longer revoked (RLS still on)",
+      "find": "revoke all on all tables in schema public from anon;",
+      "replace": "-- (mutant M09) revoke removed",
+      "status": "SURVIVED",
+      "killed_by": []
+    },
+    {
+      "id": "M10",
+      "guard": "set_instructor_status(): admin check removed",
+      "find": "if not public.is_admin() then\n    raise exception 'Only an admin can verify instructors';",
+      "replace": "if false then\n    raise exception 'Only an admin can verify instructors';",
+      "status": "KILLED",
+      "killed_by": [
+        "IN-11",
+        "IN-12"
+      ]
+    }
+  ],
+  "killed": 8,
+  "valid": 10,
+  "score": 0.8
+}

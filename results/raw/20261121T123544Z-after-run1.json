@@ -1,0 +1,987 @@
+{
+  "config": "after",
+  "run": 1,
+  "environment": {
+    "utc": "2026-11-21T12:35:42Z",
+    "python": "3.12.4",
+    "psycopg": "3.3.9",
+    "postgres": "16.2",
+    "os": "Windows-11-10.0.22631-SP0",
+    "git": {
+      "commit": "6963cf5ca5afa3bd5278046b4d02de7f9c374334",
+      "dirty": false
+    },
+    "case_set": "a5-cases-v1",
+    "case_count": 67,
+    "fixture_set": "a5-fixtures-v1",
+    "input_sha256": {
+      "schema.sql": "c068b7d803c8cd509961bc2c64550380205c4127d8d7f2f12c838c06cf2125d3",
+      "supabase_shim.sql": "708c007440f37cada5363290f1bcd502c3ba342d1081469ec021148753e0fe32",
+      "fixtures.sql": "47b741a6c533ef8f7a2bd4f9f91bbd1ed4f93264b50e4e842003d4346dd23855",
+      "cases.py": "2012aa655fd573161334c7206bf005fae5dd84108211bea536eafbb197958f6d",
+      "mutants.py": "5c9254cf4e74ac6a0bce27abcde09af22bec1f99974719be9061a59f9043950c",
+      "run_study.py": "d053cbf25dfb7f55f6cc35413495d88461c4c9a10b1906680202e2d12cccd416",
+      "improvement/001_require_active_instructor_for_course_writes.sql": "c3909d3c9d64d560f5ca9c2c375642560997b37bdb41234712bdf50151e2ebb1"
+    }
+  },
+  "summary": {
+    "cases": 67,
+    "attack_cases": 56,
+    "control_cases": 11,
+    "counterexamples": [],
+    "control_failures": [],
+    "run_valid": true,
+    "by_claim": {
+      "C1": {
+        "cases": 6,
+        "counterexamples": [],
+        "control_failures": []
+      },
+      "C5": {
+        "cases": 2,
+        "counterexamples": [],
+        "control_failures": []
+      },
+      "C2": {
+        "cases": 10,
+        "counterexamples": [],
+        "control_failures": []
+      },
+      "C3": {
+        "cases": 13,
+        "counterexamples": [],
+        "control_failures": []
+      },
+      "C7": {
+        "cases": 11,
+        "counterexamples": [],
+        "control_failures": []
+      },
+      "C4": {
+        "cases": 18,
+        "counterexamples": [],
+        "control_failures": []
+      },
+      "C6": {
+        "cases": 7,
+        "counterexamples": [],
+        "control_failures": []
+      }
+    },
+    "seconds": 1.87
+  },
+  "results": [
+    {
+      "id": "PR-01",
+      "claim": "C1",
+      "kind": "abuse",
+      "actor": "S1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "permission denied for table profiles"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "PR-02",
+      "claim": "C1",
+      "kind": "abuse",
+      "actor": "S1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "permission denied for table profiles"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "PR-03",
+      "claim": "C1",
+      "kind": "abuse",
+      "actor": "P",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "permission denied for table profiles"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "PR-04",
+      "claim": "C1",
+      "kind": "abuse",
+      "actor": "S1",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "PR-05",
+      "claim": "C1",
+      "kind": "abuse",
+      "actor": "S1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "permission denied for table profiles"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "PR-06",
+      "claim": "C1",
+      "kind": "control",
+      "actor": "S1",
+      "expect": "ok",
+      "error": null,
+      "rowcount": 1,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "SU-01",
+      "claim": "C5",
+      "kind": "abuse",
+      "actor": "auth",
+      "expect": "ok",
+      "error": null,
+      "rowcount": 1,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "SU-02",
+      "claim": "C5",
+      "kind": "control",
+      "actor": "auth",
+      "expect": "ok",
+      "error": null,
+      "rowcount": 1,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "DL-01",
+      "claim": "C2",
+      "kind": "abuse",
+      "actor": "T1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "permission denied for table assignments"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "DL-02",
+      "claim": "C2",
+      "kind": "control",
+      "actor": "T1",
+      "expect": "ok",
+      "error": null,
+      "rowcount": 1,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "DL-03",
+      "claim": "C2",
+      "kind": "abuse",
+      "actor": "S1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "P0001",
+        "message": "Only the course instructor can change a deadline"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "DL-04",
+      "claim": "C2",
+      "kind": "abuse",
+      "actor": "T2",
+      "expect": "error",
+      "error": {
+        "sqlstate": "P0001",
+        "message": "Only the course instructor can change a deadline"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "DL-05",
+      "claim": "C2",
+      "kind": "abuse",
+      "actor": "R",
+      "expect": "error",
+      "error": {
+        "sqlstate": "P0001",
+        "message": "Only the course instructor can change a deadline"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "DL-06",
+      "claim": "C2",
+      "kind": "boundary",
+      "actor": "T1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "P0001",
+        "message": "The deadline was changed by someone else. Reload and try again."
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "DL-07",
+      "claim": "C2",
+      "kind": "boundary",
+      "actor": "T1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "P0001",
+        "message": "The new deadline must be in the future"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "DL-08",
+      "claim": "C2",
+      "kind": "abuse",
+      "actor": "T1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "permission denied for table deadline_changes"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "DL-09",
+      "claim": "C2",
+      "kind": "fault",
+      "actor": "T1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "P0001",
+        "message": "A5 injected fault: notification insert failed"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "DL-10",
+      "claim": "C2",
+      "kind": "abuse",
+      "actor": "T1",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IS-01",
+      "claim": "C3",
+      "kind": "abuse",
+      "actor": "S2",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IS-02",
+      "claim": "C3",
+      "kind": "abuse",
+      "actor": "S2",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IS-03",
+      "claim": "C3",
+      "kind": "abuse",
+      "actor": "S2",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IS-04",
+      "claim": "C3",
+      "kind": "abuse",
+      "actor": "S1",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IS-05",
+      "claim": "C3",
+      "kind": "control",
+      "actor": "S1",
+      "expect": "ok",
+      "error": null,
+      "rowcount": 2,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IS-06",
+      "claim": "C3",
+      "kind": "abuse",
+      "actor": "S1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "permission denied for table enrollments"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IS-07",
+      "claim": "C3",
+      "kind": "abuse",
+      "actor": "S1",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IS-08",
+      "claim": "C3",
+      "kind": "abuse",
+      "actor": "S1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "new row violates row-level security policy for table \"objects\""
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IS-09",
+      "claim": "C3",
+      "kind": "abuse",
+      "actor": "S2",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IS-10",
+      "claim": "C3",
+      "kind": "boundary",
+      "actor": "S1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "P0001",
+        "message": "That enrollment code was not found. Check it with your instructor."
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IS-11",
+      "claim": "C3",
+      "kind": "abuse",
+      "actor": "S1",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IS-12",
+      "claim": "C3",
+      "kind": "control",
+      "actor": "S1",
+      "expect": "ok",
+      "error": null,
+      "rowcount": 1,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IS-13",
+      "claim": "C3",
+      "kind": "abuse",
+      "actor": "T1",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "GR-01",
+      "claim": "C7",
+      "kind": "abuse",
+      "actor": "S1",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "GR-02",
+      "claim": "C7",
+      "kind": "control",
+      "actor": "S1",
+      "expect": "ok",
+      "error": null,
+      "rowcount": 1,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "GR-03",
+      "claim": "C7",
+      "kind": "abuse",
+      "actor": "S1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "permission denied for table submissions"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "GR-04",
+      "claim": "C7",
+      "kind": "abuse",
+      "actor": "S1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "permission denied for table grades"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "GR-05",
+      "claim": "C7",
+      "kind": "abuse",
+      "actor": "S1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "P0001",
+        "message": "Only the course instructor can grade this assignment"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "GR-06",
+      "claim": "C7",
+      "kind": "abuse",
+      "actor": "S1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "new row violates row-level security policy for table \"assignment_progress\""
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "GR-07",
+      "claim": "C7",
+      "kind": "boundary",
+      "actor": "T1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "P0001",
+        "message": "Marks must be between 0 and 100"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "GR-08",
+      "claim": "C7",
+      "kind": "boundary",
+      "actor": "S1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "P0001",
+        "message": "er.pdf was not uploaded. Try again."
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "GR-09",
+      "claim": "C7",
+      "kind": "boundary",
+      "actor": "S1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "P0001",
+        "message": "This assignment has already been graded"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "GR-10",
+      "claim": "C7",
+      "kind": "control",
+      "actor": "S1",
+      "expect": "ok",
+      "error": null,
+      "rowcount": 1,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "GR-11",
+      "claim": "C7",
+      "kind": "control",
+      "actor": "T1",
+      "expect": "ok",
+      "error": null,
+      "rowcount": 1,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-01",
+      "claim": "C4",
+      "kind": "abuse",
+      "actor": "P",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "new row violates row-level security policy for table \"courses\""
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-02",
+      "claim": "C4",
+      "kind": "abuse",
+      "actor": "R",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "new row violates row-level security policy for table \"courses\""
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-03",
+      "claim": "C4",
+      "kind": "abuse",
+      "actor": "R",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "new row violates row-level security policy for table \"assignments\""
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-04",
+      "claim": "C4",
+      "kind": "abuse",
+      "actor": "R",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-05",
+      "claim": "C4",
+      "kind": "abuse",
+      "actor": "R",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-06",
+      "claim": "C4",
+      "kind": "abuse",
+      "actor": "R",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-07",
+      "claim": "C4",
+      "kind": "abuse",
+      "actor": "R",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-08",
+      "claim": "C4",
+      "kind": "abuse",
+      "actor": "R",
+      "expect": "error",
+      "error": {
+        "sqlstate": "P0001",
+        "message": "Only the course instructor can grade this assignment"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-09",
+      "claim": "C4",
+      "kind": "abuse",
+      "actor": "R",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-10",
+      "claim": "C4",
+      "kind": "abuse",
+      "actor": "R",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-11",
+      "claim": "C4",
+      "kind": "abuse",
+      "actor": "P",
+      "expect": "error",
+      "error": {
+        "sqlstate": "P0001",
+        "message": "Only an admin can verify instructors"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-12",
+      "claim": "C4",
+      "kind": "abuse",
+      "actor": "T1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "P0001",
+        "message": "Only an admin can verify instructors"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-13",
+      "claim": "C4",
+      "kind": "abuse",
+      "actor": "T1",
+      "expect": "error",
+      "error": {
+        "sqlstate": "P0001",
+        "message": "Only an admin can see platform statistics"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-14",
+      "claim": "C4",
+      "kind": "control",
+      "actor": "A",
+      "expect": "ok",
+      "error": null,
+      "rowcount": 1,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-15",
+      "claim": "C4",
+      "kind": "control",
+      "actor": "R",
+      "expect": "ok",
+      "error": null,
+      "rowcount": 1,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-16",
+      "claim": "C4",
+      "kind": "control",
+      "actor": "T1",
+      "expect": "ok",
+      "error": null,
+      "rowcount": 1,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-17",
+      "claim": "C4",
+      "kind": "abuse",
+      "actor": "T1",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "IN-18",
+      "claim": "C4",
+      "kind": "abuse",
+      "actor": "R",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "new row violates row-level security policy for table \"objects\""
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "AN-01",
+      "claim": "C6",
+      "kind": "abuse",
+      "actor": "anon",
+      "expect": "none",
+      "error": {
+        "sqlstate": "42501",
+        "message": "permission denied for table profiles"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "AN-02",
+      "claim": "C6",
+      "kind": "abuse",
+      "actor": "anon",
+      "expect": "none",
+      "error": {
+        "sqlstate": "42501",
+        "message": "permission denied for table courses"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "AN-03",
+      "claim": "C6",
+      "kind": "abuse",
+      "actor": "anon",
+      "expect": "none",
+      "error": {
+        "sqlstate": "42501",
+        "message": "permission denied for table grades"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "AN-04",
+      "claim": "C6",
+      "kind": "abuse",
+      "actor": "anon",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "permission denied for function enroll_by_code"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "AN-05",
+      "claim": "C6",
+      "kind": "abuse",
+      "actor": "anon",
+      "expect": "none",
+      "error": null,
+      "rowcount": 0,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "AN-06",
+      "claim": "C6",
+      "kind": "abuse",
+      "actor": "anon",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "permission denied for function admin_stats"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    },
+    {
+      "id": "AN-07",
+      "claim": "C6",
+      "kind": "abuse",
+      "actor": "anon",
+      "expect": "error",
+      "error": {
+        "sqlstate": "42501",
+        "message": "permission denied for table courses"
+      },
+      "rowcount": null,
+      "state_check": true,
+      "verdict": "PASS",
+      "counterexample": false
+    }
+  ]
+}
